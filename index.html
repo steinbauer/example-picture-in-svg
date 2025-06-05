@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text picture quality in svg</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Text picture quality in SVG</h1>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="one" data-bs-toggle="tab" data-bs-target="#one-pane"
+                            type="button" role="tab" aria-controls="one-pane" aria-selected="true">
+                        Why?
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="two" data-bs-toggle="tab" data-bs-target="#two-pane"
+                            type="button" role="tab" aria-controls="two-pane" aria-selected="false">
+                        Info
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content border border-top-0 mb-3" id="myTabContent">
+                <div class="tab-pane p-3 fade show active" id="one-pane" role="tabpanel" aria-labelledby="one"
+                     tabindex="0">
+                    <p>
+                        <strong>About this</strong><br/>
+                        This example shows how to use SVG to create a text picture with high quality.
+                    </p>
+                    <p>
+                        <strong>Why?</strong><br/>
+                        I encountered a situation where the server did not have exactly the right size images—they were
+                        always larger. I noticed that the quality of the rendered image decreases and image-rendering
+                        (high-quality/auto/crisp-edges/pixelated/smooth(safari)) from CSS has no effect - or rather,
+                        it can only degrade the quality.<br/>
+                        <br/>
+                        There is a trick via svg, but I want to try all its options and also whether it does not burden
+                        the options
+                    </p>
+                </div>
+                <div class="tab-pane p-3 fade" id="two-pane" role="tabpanel" aria-labelledby="two"
+                     tabindex="0">
+                    <p>
+                        <strong>Info</strong><br/>
+                        <span class="badge bg-info">Info</span>
+                        Boostrap 5.3 default breakpoint is:<br/>
+                        <code>min-width: 1200px</code> for extra large screens,
+                        <code>min-width: 992px</code> for large screens,
+                        <code>min-width: 768px</code> for medium screens,
+                        <code>min-width: 360px</code> for small screens.
+                        <br/>
+                        <br/>
+                        but picture exist in this width: <code>640px</code>, <code>800px</code>, <code>1200px</code>,
+                        <code>original</code> and <code>old-browser</code> for browsers that do not support picture
+                        element.
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-12">
+            <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="one2" data-bs-toggle="tab" data-bs-target="#one2-pane"
+                            type="button" role="tab" aria-controls="one2-pane" aria-selected="true">
+                        Normal picture
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="two2" data-bs-toggle="tab" data-bs-target="#two2-pane"
+                            type="button" role="tab" aria-controls="two2-pane" aria-selected="false">
+                        Picture in svg
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content border border-top-0 mb-3" id="myTabContent2">
+                <div class="tab-pane p-3 fade show active" id="one2-pane" role="tabpanel" aria-labelledby="one2"
+                     tabindex="0">
+                    <h2>Normal picture <small class="text-muted">degraded in responsivity</small></h2>
+                    <div class="ratio ratioObject" style="--bs-aspect-ratio: 75%;">
+                        <div>
+                            <picture title="Test picture quality">
+                                <source media="(min-width: 1200px)" srcset="/img/original.jpg">
+                                <source media="(min-width: 992px)" srcset="/img/1200.jpg">
+                                <source media="(min-width: 768px)" srcset="/img/800.jpg">
+                                <source media="(min-width: 360px)" srcset="/img/640.jpg">
+                                <img src="./img/old-browser.jpg" class="w-100 h-100 object-fit-cover"
+                                     alt="Test picture quality" loading="lazy">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane p-3 fade" id="two2-pane" role="tabpanel" aria-labelledby="two2" tabindex="0">
+                    <h2>Picture in svg <small class="text-muted">not degraded</small></h2>
+
+                    <div class="ratio ratioObject" style="--bs-aspect-ratio: 75%;">
+                        <div>
+                            <svg class="w-100 h-100 ratioObjectSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 75">
+                                <foreignObject width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                                    <picture>
+                                        <source media="(min-width: 1200px)" srcset="/img/original.jpg">
+                                        <source media="(min-width: 992px)" srcset="/img/1200.jpg">
+                                        <source media="(min-width: 768px)" srcset="/img/800.jpg">
+                                        <source media="(min-width: 360px)" srcset="/img/640.jpg">
+                                        <img src="./img/old-browser.jpg" class="w-100 h-100 align-top object-fit-cover">
+                                    </picture>
+                                </foreignObject>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function changeRatio(ratio) {
+                console.log('Change ratio to:', ratio);
+
+                //najit vsechn elementy s class "ratioObject"
+                document.querySelectorAll('.ratioObject').forEach(function (element) {
+
+                    //element je SVG
+                    element.style.removeProperty('--bs-aspect-ratio');
+                    element.style.setProperty('--bs-aspect-ratio', ratio * 100 + '%');
+
+                    //je v nem .ratioObjectSvg?
+                    const svgElement = element.querySelector('.ratioObjectSvg');
+                    if (svgElement) {
+                        svgElement.removeAttribute('viewBox');
+
+                        const viewBox = `0 0 100 ${ratio*100}`;
+                        svgElement.setAttribute('viewBox', viewBox);
+                        console.log('Updated SVG viewBox:', viewBox);
+                    }
+
+
+
+                });
+
+                // Další logika...
+            }
+
+            function changeDisplay(display) {
+                console.log('Change display to:', display);
+                return;
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('#ratio-radio-group label[data-ratio]').forEach(function (label) {
+                    label.addEventListener('click', function () {
+                        const ratioStr = label.getAttribute('data-ratio');
+                        let ratio;
+                        if (ratioStr.includes('/')) {
+                            const [a, b] = ratioStr.split('/').map(Number);
+                            ratio = b / a;
+                        } else {
+                            ratio = parseFloat(ratioStr);
+                        }
+                        console.log('Selected ratio:', ratio);
+                        changeRatio(ratio);
+                    });
+                });
+                document.querySelectorAll('#display-radio-group label[data-display]').forEach(function (label) {
+                    label.addEventListener('click', function () {
+                        const display = label.getAttribute('data-display');
+                        changeDisplay(display);
+                    });
+                });
+            });
+        </script>
+
+        <div class="col-12">
+            <h2>Ratio Online Demo</h2>
+            <div class="btn-group" role="group" aria-label="Ratio toggle button group" id="ratio-radio-group">
+                <input type="radio" class="btn-check" name="ratio" id="ratio-16-9" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="ratio-16-9" data-ratio="16/9">16:9</label>
+
+                <input type="radio" class="btn-check" name="ratio" id="ratio-10-7" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="ratio-10-7" data-ratio="10/7">10:7</label>
+
+                <input type="radio" class="btn-check" name="ratio" id="ratio-4-3" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="ratio-4-3" data-ratio="4/3">4:3</label>
+
+                <input type="radio" class="btn-check" name="ratio" id="ratio-1-1" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="ratio-1-1" data-ratio="1">1:1</label>
+
+                <input type="radio" class="btn-check" name="ratio" id="ratio-2-3" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="ratio-2-3" data-ratio="2/3">2:3</label>
+            </div>
+
+
+            <div class="btn-group" role="group" aria-label="Display toggle button group" id="display-radio-group">
+                <input type="radio" class="btn-check" name="display" id="display-cover" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="display-cover" data-display="cover">Cover</label>
+
+                <input type="radio" class="btn-check" name="display" id="display-contain" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="display-contain" data-display="contain">Contain</label>
+
+                <input type="radio" class="btn-check" name="display" id="display-fill" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="display-fill" data-display="fill">Fill</label>
+
+                <input type="radio" class="btn-check" name="display" id="display-none" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="display-none" data-display="none">None</label>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+</body>
+</html>
